@@ -60,56 +60,64 @@
 
    
 
+## Étape 2 : Récupérer les offres d'emploi sur le site data.gouv.nc
+
+### 2.1 - Le site data.gouv.nc
+
+> Onglet information
+
+Le site source est celui-ci :
+https://data.gouv.nc/explore/dataset/offres-d-emploi-deposees-sur-le-site-emploi-nc/information/
+
+* C'est la porte d'entrée du jeu de données. Il met à disposition des jeux de données, que l'on pourra interroger avec l'API qu'ils fournissent.
+* L'identifiant du jeu de données est :  *offres-d-emploi-deposees-sur-le-site-emploi-nc*
+* La licence *Licence Ouverte 2.0* indique que je peux les télécharger, les utiliser à des fin commerciales ou non, mais que je dois citer la source (gouvernement NC)
+* La péridicité est quotidienne
+* Date de création : 26 mars 2026
+
+> Onglet API
+
+Le site :
+https://data.gouv.nc/explore/dataset/offres-d-emploi-deposees-sur-le-site-emploi-nc/api/
+
+* Il explique comment utiliser l'api
+* Il y a 1 127 enregistrements actifs
+* La dernière version de l'api est la V2.1
+ 
+L'endpoint, ie l'adresse exacte de l'API fournie par le site est :
+https://data.gouv.nc/api/explore/v2.1/catalog/datasets/offres-d-emploi-deposees-sur-le-site-emploi-nc/records
 
 
-## Étape 2 : Configuration de l'environnement de développement (`package.json`)
-Installation des outils indispensables pour le confort de développement et la gestion des scripts :
-- **`cross-env`** pour définir proprement les variables d'environnement[cite: 12].
-- **`nodemon`** (en dépendance de développement `-D`) pour automatiser le redémarrage du serveur Node.js à chaque modification du code[cite: 12].
-- Configuration de scripts npm dédiés (`dev` et `prod`) pour basculer facilement d'un mode à l'autre[cite: 12].
+### 2.2 - Récupérer la totalité des offres 
 
-## Étape 3 : Le pipeline de données (Python + SQLite)
-Séparation claire des rôles entre l'ETL et le serveur web :
-1. **`main.py` (ETL) :** Interroge l'API officielle de `data.gouv.nc` (en version v2.1)[cite: 8], récupère les enregistrements, compare avec la base SQLite (`offres_emploi.db`) grâce aux identifiants uniques (`uuid`), insère uniquement les nouveautés, et retourne le nombre exact de nouveaux éléments ajoutés.
-2. **Express (`server.mjs`) :** Expose les routes de l'API (`/api/it-jobs`, `/api/refresh`) et sert l'interface web statique.
+```py
+import requests     # Bibliothèque pour permettre à python de communiquer avec le web.
 
-
-
-
-
-
-
-
-
-
-# Titre 1
-## Titre 2
-### Titre 3
-#### Titre 4
-##### Titre 5
-
-* Liste à puces non ordonnées
-    * Puce 2.1
-    * Puce 2.2
-
-Liste à puces numérotées
-1. Premier élément 
-2. Second
-3. Troisième
-
-*En italique*
-
-**En gras**
-
-
-Ligne séparation horizontale c'est --- ou ***
----	
-***
-
-
-
-
-```js
-typeof 42
-typeof 42.15        //renvoient tous les deux "number"
+# URL de l'API offres d'emploi en Nouvelle-Calédonie
+URL_API = "https://data.gouv.nc/api/explore/v2.1/catalog/datasets/offres-d-emploi-deposees-sur-le-site-emploi-nc/records"
 ```
+
+Voici ce qu'il faut récupérer. C'est comme un dictionnaire dans Python, avec une paire clé-valeur
+Il y a donc deux clés: `total_count` et `result`
+La clé `result` commence par un crochet, ie une liste. Cette liste contient des objets `{...}`, qui sont eux-mêmes un ensemble de paires clé-valeur, l'offre d'emploi.
+
+```json
+{
+  "total_count":1141,
+  "results":[
+    {
+    "uuid":"20261012d89e",
+    "titre":"Pharmacien / Pharmacienne en officine",
+    "nb_postes":2,
+    "statut":"ACTIVE",
+    "rome_code":"J1202",
+    "date_debut":"2026-11-01T13:00:00+00:00",
+    "ville":"OUEGOA",
+    "type_contrat":"CDD",
+    "nb_jours_contrat":0,
+    "nb_mois_contrat":0,
+    "nb_annees_contrat":0
+    }]
+}
+```
+
