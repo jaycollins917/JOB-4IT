@@ -48,11 +48,15 @@
 -   `dev` lance le serveur avec nodemon et active le mode développement (le serveur redémarrera tout seul à chaque modification).
 -   `prod` lance le serveur en mode production avec Node.js standard. 
 
->Validation de cette étape avec Git
+>Validation de cette étape avec Git et envoi sur Github
 
 - Inutile d'envoyer `node_modules/` sur Github. On ajoute ce dossier dans `.gitignore`
 - ⭐ `git add .`
-- 🐦‍🔥`git commit -m "Étape 1 - Init projet, structure, bibliothèques` 🐦‍🔥 
+- 🐦‍🔥`git commit -m "Étape 1 - Init projet, structure, bibliothèques"` 🐦‍🔥 
+- Sur gitHub, créer un nouveau dépôt
+- Dans le shell, lier le projet avec le dépôt sur Github ⏭ `git remote add origin https://github.com/jaycollins917/scrapwork-app.git` 
+- Pousser le dépôt sur Github : `git push -u origin master`
+- Note: la branche principale s'appelle *master*. C'est le nom historique depuis la création de Github. À présent, on utilise *main*, par convention.
 
    
 
