@@ -45,7 +45,12 @@ def load_BD(liste_offres):
     
     compteur = 0
     for offre in liste_offres:
-        # On utilise INSERT OR REPLACE pour mettre à jour si le UUID existe déjà
+        # Commande magique: INSERT OR REPLACE: 
+        # Avec la clé primaire uuid:
+        #   - si la clé n'existe pas dans la base, on fait un INSERT
+        #   - si la clé existe, on regarde chaque attribut, et s'il a été modifié, on le remplace
+        # Cela évite de devoir scanner les changements avec un attribut "updated" par exemple
+
         cursor.execute("""
             INSERT OR REPLACE INTO offres (
                 uuid, titre, statut, rome_code, date_debut, ville, type_contrat,

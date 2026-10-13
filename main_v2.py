@@ -17,5 +17,5 @@ if total > 0:
     # 3. Initialisation de la BDD
     bd.init_BD()
     
-    # 4. Chargement (Load)
+    # 4. Chargement
     bd.load_BD(offres)

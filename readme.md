@@ -60,7 +60,7 @@
 
    
 
-## Étape 2 : Récupérer les offres d'emploi sur le site data.gouv.nc
+## Étape 2 : Récupérer les offres d'emploi sur le site data.gouv.nc et création base de données
 
 ### 2.1 - Le site data.gouv.nc
 
@@ -121,3 +121,38 @@ La clé `result` commence par un crochet, ie une liste. Cette liste contient des
 }
 ```
 
+Dans le fichier `datagouv.py` on trouvera l'ensemble des fonctionnalités
+
+### 2.3  : Création de la base de donnée
+
+Se référer au programme `bd.py`.
+
+## Étape 3 : Serveur express
+
+### 3.1 - Configuration, codage.
+
+ - Création du fichier `serveur.mjs`
+ - Création du dossier views pour fichier **.ejs** et **.css**
+ - Installation des bibliothèques avec **NPM**:  `npm install express ejs`
+   - `express` pour faire tourner le serveur
+   - `ejs` pour le templating de pages web
+
+### 3.2 Lancement du serveur
+
+Dans le fichier package.json, on a renseigné ceci:
+
+```json
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon server.mjs",       // Permet de redémarrer le serveur à chaque modif avec le module nodemon
+    "prod": "cross-env NODE_ENV=prod node server.mjs"         // Les modifs seront prises en compte au redémarrage manuel du serveur.
+  }
+```
+
+>cross-env
+
+`cross-env` est un outil de Node.js qui permet de définir des variables d'environnement de manière universelle, peu import l'OS
+La variable d'environnement ici est `NODE_ENV`.
+Si dans le terminal on lance le serveur ainsi: 
+  - `npm run dev`, la commande qui sera passée sera `npm run nodemon server.mjs`
+  - `npm run prod`, la commande qui sera passée sera `npm run node server.mjs`
