@@ -61,7 +61,7 @@ def deux_offres():
     else:
         print(f"Erreur HTTP : {response.status_code}")
 
-deux_offres()
+#deux_offres()
 
 # --------------------------------------------------------------------------------
 # C'est parti on récupère tout maintenant
