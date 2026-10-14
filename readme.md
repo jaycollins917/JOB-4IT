@@ -131,7 +131,7 @@ Se référer au programme `bd.py`.
 
 ### 3.1 - Configuration, codage.
 
- - Création du fichier `serveur.mjs`
+ - Création du fichier `server.mjs`
  - Création du dossier views pour fichier **.ejs** et **.css**
  - Installation des bibliothèques avec **NPM**:  `npm install express ejs`
    - `express` pour faire tourner le serveur

@@ -1,3 +1,4 @@
+from datetime import datetime       
 import sqlite3
 NOM_BDD = "emploi_nc.db"
 
@@ -51,6 +52,10 @@ def load_BD(liste_offres):
         #   - si la clé existe, on regarde chaque attribut, et s'il a été modifié, on le remplace
         # Cela évite de devoir scanner les changements avec un attribut "updated" par exemple
 
+        date_start = formater_date(offre.get("date_debut"))
+        date_create = formater_date(offre.get("created_at"))
+        date_update = formater_date(offre.get("updated_at"))
+
         cursor.execute("""
             INSERT OR REPLACE INTO offres (
                 uuid, titre, statut, rome_code, date_debut, ville, type_contrat,
@@ -63,7 +68,7 @@ def load_BD(liste_offres):
             offre.get("titre"),
             offre.get("statut"),
             offre.get("rome_code"),
-            offre.get("date_debut"),
+            date_start,
             offre.get("ville"),
             offre.get("type_contrat"),
             str(offre.get("diplome_obliatoire")),
@@ -71,8 +76,8 @@ def load_BD(liste_offres):
             str(offre.get("region_sud")),
             str(offre.get("region_nord")),
             str(offre.get("region_ile")),
-            offre.get("created_at"),
-            offre.get("updated_at"),
+            date_create,
+            date_update,
             offre.get("diplome"),
             offre.get("description"),
             offre.get("employer_id"),
@@ -85,3 +90,10 @@ def load_BD(liste_offres):
     conn.commit()
     conn.close()
     print(f"{compteur} offres ont été chargées avec succès dans la base SQLite.")
+
+
+# Les dates sur data.gouv sont au format 2026-08-31T13:00:00+00:00. On la tronque à partir du "T" pour plus de lisibilité sur la page web.
+def formater_date(date_str):
+    if not date_str:
+        return None
+    return date_str.split("T")[0]

@@ -3,14 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Environnement - Emploi NC</title>
+    <title>Job IT NC</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
 </head>
 <body>
-    <div class="card">
-        <h1>Statut du Serveur Express</h1>
-        <p>Le serveur tourne correctement.</p>
-        <p>Mode détecté : <span class="badge <%= mode %>"><%= mode.toUpperCase() %></span></p>
+
+    <div class="header-stats">
+        <h1>Offres d'emploi IT</h1>
+        <div class="stats-bar">
+            <span><emoji>🥷</emoji> <strong><%= totalAnnonces %></strong> Offres totales</span>
+            <span><emoji>🌅</emoji> <strong><%= totalActives %></strong> Actives</span>
+            <span><emoji>🏢</emoji> <strong><%= totalEmployeurs %></strong> Employeurs</span>
+        </div>
     </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Créée le</th>
+                    <th>Titre</th>
+                    <th>Entreprise</th>
+                    <th>Contrat</th>
+                    <th>Niveau<br>d'étude</th>
+                    <th>Diplôme</th>
+                    <th>Statut</th>
+                    <th>Code ROME</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (offres.length > 0) { %>
+                    <% offres.forEach(offre => { %>
+                        <tr onclick="window.open('/offre/<%= offre.uuid %>', '_blank')" style="cursor: pointer;">
+                            <td><%= offre.created_at %></td>
+                            <td><%= offre.titre %></td>
+                            <td><%= offre.enseigne %></td>
+                            <td style="text-align: center;"><%= offre.type_contrat %></td>
+                            <td style="text-align: center;"><%= offre.niveau_etude %></td>
+                            <td><%= offre.diplome %></td>
+                            <td><%= offre.statut %></td>
+                            <td><%= offre.rome_code %></td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #777;">Aucune offre trouvée pour cette tranche de codes ROME.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    
 </body>
 </html>

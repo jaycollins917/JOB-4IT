@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= offre.titre %> - Détails de l'offre</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="detail-page">
+
+    <div class="detail-container">
+        <a href="/" class="back-link">← Retour aux offres</a>
+
+        <div class="detail-header-card">
+            <div class="top-badges">
+                <div class="badge-enseigne">🏢 <%= offre.enseigne || 'Anonyme' %></div>
+                <div class="badge-statut">Offre <%= offre.statut %></div>
+            </div>
+            
+            <h1><%= offre.titre %></h1>
+            <p class="uuid-text">Offre : <%= offre.uuid %></p>
+
+            <div class="meta-tags">
+                <div class="tag">ROME <%= offre.rome_code %></div>
+                <div class="tag">Type de contrat: <%= offre.type_contrat %></div>
+                <div class="tag">Lieu: <%= offre.ville || offre.ville_physique || 'Non spécifié' %></div>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>📅 Résumé de l'offre</h2>
+            <ul>
+                <li><strong>Date de début :</strong> <%= offre.date_debut || 'Non renseignée' %></li>
+                <li><strong>Type de contrat :</strong> <%= offre.type_contrat %></li>
+                <li><strong>Lieu de l'emploi :</strong> <%= offre.ville || 'Non spécifié' %></li>
+            </ul>
+        </section>
+
+        <section class="detail-section">
+            <h2>🎓 Contexte de travail</h2>
+            <ul>
+                <li><strong>Expérience professionnelle :</strong> <%= offre.experience || 'Non spécifiée' %></li>
+                <li><strong>Niveau d'étude :</strong> <%= offre.niveau_etude ? 'Niveau ' + offre.niveau_etude : 'Non spécifié' %></li>
+                <li><strong>Diplôme :</strong> <%= offre.diplome || 'Non spécifié' %></li>
+                <li><strong>Diplôme obligatoire :</strong> <%= offre.diplome_obliatoire === '1' ? 'Oui' : 'Non' %></li>
+            </ul>
+        </section>
+
+        <section class="detail-section">
+            <h2>📄 Complément d'information sur l'offre</h2>
+            <div class="description-box">
+                <p><%= offre.description || 'Aucune description détaillée fournie.' %></p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
