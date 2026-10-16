@@ -9,8 +9,39 @@
 </head>
 <body>
 
+    <div class="bandeau">
+        <h1 class="rgb-title">JOB [IT] NC</h1>
+    
+        <!--- Le bouton connexion -->
+
+        <button id="btn-connex" data-total="<%= totalAnnonces %>">CONNEXION</button>
+        <div class="tooltip-box">
+            Se connecte à l'API data.gouv, récupère les nouvelles annonces, met à jour la base de données et rafraîchit le tableau de cette page.
+        </div>
+
+        
+        <!--- Le bouton supprimer entrées BD -->
+        <form action="/supp-db" method="POST" class="tooltip-wrapper">
+            <button type="submit" id="btn-supp">SUPP BD</button>
+            <div class="tooltip-box">
+                En vue de tests, ce bouton supprime les annonces de code ROM 1810 dans la bd, et réactualise la page.
+                <br> Ainsi, quand on clique sur connexion, on voit réellement les nouvelles annonces.
+            </div>
+        </form>
+
+        <!-- Barre progression de récupération des annonces (masquée par défaut) -->
+        <div id="progress-container">
+            <div id="progress-label">Progression : 0 / 0</div>
+            <div class="progress-track">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+        <div id="progress-fin"></div>
+
+    </div>
+    
     <div class="header-stats">
-        <h1>Offres d'emploi IT</h1>
+        <h1>Site d'offres d'emploi et de statistiques IT</h1>
         <div class="stats-bar">
             <span><emoji>🥷</emoji> <strong><%= totalAnnonces %></strong> Offres totales</span>
             <span><emoji>🌅</emoji> <strong><%= totalActives %></strong> Actives</span>
@@ -55,6 +86,11 @@
         </table>
     </div>
 
+    
+    <script>
+        // Ici on récupère le nombre total d'annonces actuel avant de se connecter à la base
+        const anciennesOffres = parseInt("<%= totalAnnonces %>") || 0;
+    </script>
     
 </body>
 </html>

@@ -43,5 +43,5 @@ def recuperer_offres(nb_offre_total):
             print(f"Erreur HTTP {response.status_code} à l'offset {offset}")
             break
             
-    print(f"\nExtraction terminée. {len(liste_offres)} offres chargées en mémoire.")
+    #print(f"\nExtraction terminée. {len(liste_offres)} offres chargées en mémoire.")
     return liste_offres
