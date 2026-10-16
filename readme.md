@@ -29,3 +29,8 @@
 
 - read_howto.md   : rappelle à la manière du TP5 comment mettre en place tout l'environnement Node, express, Git, etc... en vue de partage ou de fiche de révision
 - read_json.md    : un petit tuto sur le format JSON
+
+## Aperçu de l'application
+
+![Aperçu de Job 4IT](public/capture_site1.png)
+![Aperçu de Job 4IT](public/capture_site2.png)
