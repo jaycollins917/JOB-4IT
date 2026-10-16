@@ -52,9 +52,10 @@ body {
     }
 }
 
+
 /* ----------  BOUTON CONNEXION   ---------- */
 
-#btn-connex, #btn-supp {
+#btn-connex, #btn-supp, #btn-stats {
     background-color: #2a2a2a; /* Gris foncé assorti à ton thème */
     color: #ffffff;
     font-weight: 700;
@@ -67,11 +68,9 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn:hover {
+#btn-connex:hover, #btn-supp:hover, #btn-stats:hover  {
     border-color: #00ff88;
     color: #20b92d;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
-    transform: translateY(-1px);
 }
 
 /* ----------   L'INFO BULLE DU BOUTON CONNEXION   ---------- */
@@ -166,6 +165,7 @@ body {
     gap: 20px;
     font-size: 16px;
     color: #a0a0a0;
+    margin-right: 10px;
 }
 
 emoji {

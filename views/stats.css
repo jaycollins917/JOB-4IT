@@ -1,0 +1,43 @@
+/* Panneau blanc des statistiques */
+.stats-container {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.white-panel {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+.white-panel h2 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    color: #111111;
+}
+
+/* Fix pour maîtriser la taille du camembert dans son panneau */
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px !important;   /* Force la hauteur du conteneur */
+    min-height: 350px;
+}
+
+.back-link {
+    color: #00ffcc;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

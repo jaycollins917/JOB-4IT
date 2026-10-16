@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job 4IT</title>
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/stats.css">
+
+
+
+</head>
+
+<body>
+    <div class="bandeau">
+        <h1 class="rgb-title">JOB 4IT</h1>
+    </div>
+    <!-- Le deuxième bandeau-->
+
+    <div class="header-stats">
+        <h1>Site d'offres d'emploi et de statistiques IT</h1>
+        <div class="stats-bar">
+            <span><emoji>🥷</emoji> <strong><%= totalAnnonces %></strong> Offres totales</span>
+            <span><emoji>🌅</emoji> <strong><%= totalActives %></strong> Actives</span>
+            <span><emoji>🏢</emoji> <strong><%= totalEmployeurs %></strong> Employeurs</span>
+        </div>
+    </div>
+
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+
+    <main class="stats-container">
+        <!-- Panneau 1 le camembert -->
+        <div class="white-panel">
+            <h2>Répartition des offres IT par catégorie</h2>
+            <div class="chart-wrapper">
+                <canvas id="sectorChart" data-stats='<%= JSON.stringify(sectorStats) %>'></canvas>
+            </div>
+        </div>
+
+        <!-- Panneau 2 : Histogramme Mensuel IT -->
+        <div class="white-panel">
+            <h2>Nombre de nouvelles annonces IT par mois</h2>
+            <div class="chart-wrapper">
+                <!-- C'est ici que l'attribut data-monthly transmet les données à stats.js -->
+                <canvas id="monthlyChart" data-monthly='<%= JSON.stringify(monthlyStats) %>'></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>                                                                           <!-- Chart.js pour les graphiques -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>         <!-- Pour les labels de graphique -->
+    <script src="/stats.js"></script>                                                                                                       <!-- À placer après Chart.js -->
+
+</body>
+
+
