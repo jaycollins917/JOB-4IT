@@ -7,6 +7,11 @@
 - Au lancement du serveur, la route de la page d'accueil va chercher dans la base de données les offres d'emploi IT et les affiche dans un tableau.
 - Cliquer sur une annonce lance une route pour ouvrir un template detail.ejs (les détails de l'annonce)
 
+## Aperçu de l'application
+
+![Aperçu de Job 4IT](public/capture_site1.png)
+![Aperçu de Job 4IT](public/capture_site2.png)
+
 ## Les boutons
 
 - `Connexion` : se connecte à l'API data.gouv, récupère toutes les annonces, affiche une barre de progression, rafraîchit la page
@@ -30,7 +35,4 @@
 - read_howto.md   : rappelle à la manière du TP5 comment mettre en place tout l'environnement Node, express, Git, etc... en vue de partage ou de fiche de révision
 - read_json.md    : un petit tuto sur le format JSON
 
-## Aperçu de l'application
 
-![Aperçu de Job 4IT](public/capture_site1.png)
-![Aperçu de Job 4IT](public/capture_site2.png)
